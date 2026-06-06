@@ -1,34 +1,34 @@
-[🇷🇺 Русский](README.md) • [🇬🇧 English](README.en.md)
+[English](README.md) | [Русский](README.ru.md)
 
-# Кинополка
+# CineShelf
 
-## **CineShelf: Ваша персональная кинотека с душой**
+## **CineShelf: Your Personal Movie Library with a Soul**
 
-**CineShelf** — это современное веб-приложение для коллекционеров и любителей кино, превращающее процесс отслеживания фильмов и сериалов в визуальное удовольствие. Мы объединили функциональность трекера с эстетикой физической коллекции.
+**CineShelf** is a modern web application for collectors and movie enthusiasts that turns tracking films and TV shows into a visual pleasure. We have combined the functionality of a tracker with the aesthetics of a physical collection.
 
 ![image.png](attachments/1780748956179-image.png)
 
-### **Почему CineShelf?**
+### **Why CineShelf?**
 
-Забудьте о скучных таблицах. CineShelf предлагает уникальный интерфейс в стиле **виртуальной DVD-полки**. Благодаря 3D-анимациям раскрытия кейсов, вы почувствуете тот самый уют, который дарит владение физической библиотекой, но со всеми преимуществами цифровых технологий.
+Forget about boring spreadsheets. CineShelf offers a unique interface styled as a **virtual DVD shelf**. Thanks to 3D case-opening animations, you will experience the exact same cozy feeling that comes with owning a physical library, but with all the advantages of digital technology.
 
 ![image.png](attachments/1780748969318-image.png)
 
-### **Ключевые возможности:**
+### **Key Features:**
 
-- **Виртуальная полка:** Переключайтесь между классическим сеточным видом и иммерсивной 3D-полкой с плавной анимацией.
-- **Полный контроль над сериалами:** Интеграция с TVMaze позволяет автоматически подтягивать сезоны и серии. Следите за прогрессом просмотра и ставьте оценки каждому эпизоду отдельно.
-- **Ваши заметки и рейтинги:** Храните личные рецензии, пометки, даты просмотров и оценки по 10-балльной шкале.
-- **Умная организация:** Используйте теги, статусы (смотрел/смотрю/планирую) и быстрый поиск по всей базе.
-- **Работа без границ:** Приложение полностью локально — все ваши данные хранятся в браузере. Вы можете пользоваться им даже без интернета (после загрузки метаданных).
-- **Двуязычный интерфейс:** Полная поддержка русского и английского языков.
+- **Virtual Shelf:** Switch between a classic grid view and an immersive 3D shelf with smooth animations.
+- **Complete Control Over TV Shows:** Integration with TVMaze allows you to automatically pull seasons and episodes. Track your viewing progress and rate each episode individually.
+- **Your Notes and Ratings:** Store personal reviews, notes, watch dates, and ratings on a 10-point scale.
+- **Smart Organization:** Use tags, statuses (watched / watching / planning to watch), and a quick search across your entire database.
+- **Border-Free Performance:** The application is completely local — all your data is stored right in your browser. You can even use it without an internet connection (after metadata has been loaded).
+- **Bilingual Interface:** Full support for both Russian and English.
 
-### **Для кого это приложение?**
+### **Who Is This App For?**
 
-- **Киноманам:** для тех, кто хочет красиво структурировать свой «кино-багаж».
-- **Сериальным марафонцам:** для тех, кому важен детальный трекинг каждого эпизода.
-- **Эстетам:** для тех, кто ценит качественный UI, плавные анимации и Dark Mode.
+- **Cinephiles:** For those who want to beautifully structure their "movie backlog."
+- **Binge-Watchers:** For those who value detailed tracking of every single episode.
+- **Aesthetes:** For those who appreciate high-quality UI, smooth animations, and Dark Mode.
 
-### **Технологический стек**
+### **Tech Stack**
 
-CineShelf — это легковесное и быстрое React-приложение на TypeScript, созданное с вниманием к деталям. Мы используем современный CSS без тяжелых фреймворков, чтобы обеспечить высокую производительность и плавность 3D-эффектов.
+CineShelf is a lightweight and fast React application built on TypeScript with meticulous attention to detail. We use modern pure CSS without heavy frameworks to ensure high performance and seamless 3D effects.
