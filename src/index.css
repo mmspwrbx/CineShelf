@@ -1,0 +1,650 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Stark Transitions */
+  --animate-fade-in: fade-in 0.2s ease-out forwards;
+  --animate-slide-up: slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-scale-in: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    transform: translateY(12px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes scale-in {
+  from { 
+    transform: scale(0.98); 
+    opacity: 0; 
+  }
+  to { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Stark Brutalist Global Styling */
+html {
+  font-size: 19px;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Stark UI Element Containers */
+.stark-panel {
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.stark-card {
+  background-color: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+}
+
+/* Stark Responsive Hover States (No gradients, background stays dark, poster colors up) */
+.stark-card:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Sharp inputs */
+.stark-input {
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  transition: border-color 0.15s ease;
+}
+
+.stark-input:focus {
+  border-color: #ffffff;
+  outline: none;
+}
+
+/* Stark buttons */
+.stark-btn {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  transition: all 0.15s ease;
+}
+
+.stark-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.stark-btn-filled {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  transition: all 0.15s ease;
+}
+
+.stark-btn-filled:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.stark-btn-danger {
+  background-color: #000000;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  transition: all 0.15s ease;
+}
+
+.stark-btn-danger:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* Separator grid lines spanning viewport */
+.viewport-line-v {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 40;
+}
+
+.viewport-line-h {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+/* Custom stark ratings input */
+input[type="range"].stark-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].stark-slider::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.15);
+  height: 2px;
+}
+
+input[type="range"].stark-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -6px;
+  background-color: #ffffff;
+  height: 14px;
+  width: 14px;
+  border: 1px solid #000000;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"].stark-slider:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+/* Black & White Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border: 1px solid #000000;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+/* Specifically style the drop-down selectors and options to use Courier New */
+select, select option {
+  font-family: var(--font-mono) !important;
+}
+
+/* DVD Shelf styling */
+.dvd-shelf-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem; /* vertical gap between shelves */
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.dvd-shelf-row {
+  display: flex;
+  flex-wrap: nowrap; /* keep all chunked shelf items on a single horizontal row */
+  gap: 8px; /* horizontal slot gap */
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  padding-bottom: 12px; /* space above the shelf board line */
+}
+
+.dvd-shelf-item {
+  position: relative;
+  width: 96px; /* Set slot width to 96px to stack upsized spines closely */
+  height: 390px;
+  perspective: 1000px;
+  z-index: 1;
+  transition: z-index 0.4s step-end; /* Delay z-index drop during shrink transition */
+}
+
+.dvd-shelf-item:hover {
+  z-index: 40; /* Raise stacking context on hover */
+  transition: z-index 0s; /* Apply immediately on hover */
+}
+
+.dvd-shelf-line {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: #121212;
+  border-top: 2px solid #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.7);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* DVD Case 3D effect on shelf */
+.dvd-case-card {
+  width: 260px; /* Full upsized cover width when open/facing */
+  height: 390px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  /* Angled normal state facing the spine (end cap) towards the user */
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.dvd-case-card:hover {
+  /* Face the cover up, slide out (translateZ), and shift left (translateX) to center over the slot */
+  transform: rotateY(0deg) rotateX(0deg) translateZ(80px) translateX(-82px);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+  z-index: 30; /* Bring above neighboring spines */
+}
+
+/* Shift neighboring DVD cards left and right when one is hovered to create space (scoped to the same row) */
+.dvd-shelf-row:has(.dvd-shelf-item:hover) .dvd-shelf-item:has(~ .dvd-shelf-item:hover) .dvd-case-card {
+  transform: translateX(-100px) rotateY(74deg) rotateX(2deg);
+}
+
+.dvd-shelf-row .dvd-shelf-item:hover ~ .dvd-shelf-item .dvd-case-card {
+  transform: translateX(100px) rotateY(74deg) rotateX(2deg);
+}
+
+/* Spine edge of the DVD case on shelf (left face of the box) */
+.dvd-case-card-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px; /* Thickness of case */
+  height: 100%;
+  background: #111;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  transform: rotateY(-90deg);
+  transform-origin: left center;
+  z-index: 2;
+}
+
+.dvd-case-card-cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(36px); /* Align cover with the thickness of the box */
+  z-index: 1;
+}
+
+/* Right face of the 3D box */
+.dvd-case-card-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 36px;
+  height: 100%;
+  background: #151515;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transform: rotateY(90deg);
+  transform-origin: right center;
+  z-index: 2;
+}
+
+/* Top face of the 3D box */
+.dvd-case-card-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 36px;
+  background: #151515;
+  transform: rotateX(90deg);
+  transform-origin: center top;
+  z-index: 2;
+}
+
+/* Bottom face of the 3D box */
+.dvd-case-card-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 260px;
+  height: 36px;
+  background: #151515;
+  transform: rotateX(-90deg);
+  transform-origin: center bottom;
+  z-index: 2;
+}
+
+/* 3D Opened DVD Case Modal */
+.dvd-case-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+.dvd-case-modal-scale-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.dvd-case-opened-book {
+  position: relative;
+  width: 540px; /* Width of one page */
+  height: 720px;
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dvd-case-opened-book.open {
+  transform: translateX(-270px);
+}
+
+/* Hinge (spine of open case) */
+.dvd-case-hinge {
+  position: absolute;
+  left: 534px;
+  top: 0;
+  width: 12px;
+  height: 100%;
+  background: #121212;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  transform: translateZ(1px);
+  z-index: 10;
+}
+
+/* Cover Leaf (rotates open to the left) */
+.dvd-case-cover-leaf {
+  position: absolute;
+  left: 540px; /* Aligned to the hinge right side */
+  top: 0;
+  width: 540px;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 15;
+}
+
+/* Open state: flips to -180 degrees */
+.dvd-case-cover-leaf.open {
+  transform: rotateY(-180deg);
+}
+
+.dvd-case-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Front Cover (visible when closed) */
+.dvd-case-front-face {
+  z-index: 2;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Back of Cover (revealed when opened, on the left side) */
+.dvd-case-back-face {
+  transform: rotateY(180deg);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 1;
+}
+
+/* Right Leaf (stays in place, revealed underneath the cover) */
+.dvd-case-tray-leaf {
+  position: absolute;
+  left: 540px;
+  top: 0;
+  width: 540px;
+  height: 100%;
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* DVD Disc representation inside the case */
+.dvd-disc-holder {
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #000 12%, #333 13%, #333 18%, #111 20%, #222 30%, #555 45%, #222 65%, #000 66%);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 2px 2px 5px rgba(0,0,0,0.5);
+  opacity: 0.18;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Mobile responsive scaling rules */
+@media (max-width: 1200px) {
+  .dvd-case-modal-scale-container {
+    transform: scale(0.85);
+  }
+}
+@media (max-width: 992px) {
+  .dvd-case-modal-scale-container {
+    transform: scale(0.72);
+  }
+}
+@media (max-width: 768px) {
+  .dvd-case-modal-scale-container {
+    transform: scale(0.58);
+  }
+}
+@media (max-width: 576px) {
+  .dvd-case-modal-scale-container {
+    transform: scale(0.44);
+  }
+}
+@media (max-width: 420px) {
+  .dvd-case-modal-scale-container {
+    transform: scale(0.32);
+  }
+}
+
+/* Drag and Drop classes */
+.cursor-grab {
+  cursor: grab !important;
+}
+
+.cursor-grabbing {
+  cursor: grabbing !important;
+}
+
+/* Sibling shift for Grid mode cards, shifting only the inner visual card */
+.movie-card-wrapper.drag-over-before .stark-card-inner,
+.movie-card-wrapper.drag-over-before ~ .movie-card-wrapper .stark-card-inner {
+  transform: translate3d(28px, 0, 0) !important;
+}
+
+.movie-card-wrapper.drag-over-after ~ .movie-card-wrapper .stark-card-inner {
+  transform: translate3d(28px, 0, 0) !important;
+}
+
+/* Render vertical drop line centered exactly in the gap between grid cards */
+.movie-card-wrapper.drag-over-before::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2px;
+  width: 4px;
+  background-color: #ffffff;
+  z-index: 20;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+.movie-card-wrapper.drag-over-after::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -26px;
+  width: 4px;
+  background-color: #ffffff;
+  z-index: 20;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+/* Render vertical drop line centered exactly in the gap between DVD cases on shelf */
+.dvd-shelf-item.drag-over-before::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: -6px !important;
+  right: auto !important;
+  width: 4px;
+  background-color: #ffffff;
+  z-index: 20;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+.dvd-shelf-item.drag-over-after::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: -6px !important;
+  left: auto !important;
+  width: 4px;
+  background-color: #ffffff;
+  z-index: 20;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+/* DVD Shelf drag state - active dragging transition for smooth animations */
+.dvd-shelf-container.dragging-active .dvd-case-card {
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* DVD Shelf drag state - snap back to vertical spine and dim on drag */
+.dvd-shelf-item.dragging .dvd-case-card {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.8) !important;
+  opacity: 0.4 !important;
+  transition: none !important;
+}
+
+/* Disable hover effects & shifts during drag */
+.dvd-shelf-container.dragging-active .dvd-case-card:hover {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.8) !important;
+  z-index: 1 !important;
+}
+
+.dvd-shelf-container.dragging-active .dvd-shelf-row:has(.dvd-shelf-item:hover) .dvd-shelf-item:has(~ .dvd-shelf-item:hover) .dvd-case-card {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+}
+
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item:hover ~ .dvd-shelf-item .dvd-case-card {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+}
+
+/* Shift target and all subsequent items to the right, and preceding items to the left to create a shelf gap before target */
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item:has(~ .dvd-shelf-item.drag-over-before) .dvd-case-card {
+  transform: translateX(-42px) rotateY(74deg) rotateX(2deg) !important;
+}
+
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item.drag-over-before .dvd-case-card,
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item.drag-over-before ~ .dvd-shelf-item .dvd-case-card {
+  transform: translateX(42px) rotateY(74deg) rotateX(2deg) !important;
+  z-index: 10 !important;
+}
+
+/* Shift target and all preceding items to the left, and subsequent items to the right to create a shelf gap after target */
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item:has(~ .dvd-shelf-item.drag-over-after) .dvd-case-card,
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item.drag-over-after .dvd-case-card {
+  transform: translateX(-42px) rotateY(74deg) rotateX(2deg) !important;
+}
+
+.dvd-shelf-container.dragging-active .dvd-shelf-row .dvd-shelf-item.drag-over-after ~ .dvd-shelf-item .dvd-case-card {
+  transform: translateX(42px) rotateY(74deg) rotateX(2deg) !important;
+  z-index: 10 !important;
+}
+
+/* Prevent pointer-events flickering on drag-over targets */
+.dragging-active .stark-card * {
+  pointer-events: none !important;
+}
+
+.dvd-shelf-container.dragging-active .dvd-shelf-item * {
+  pointer-events: none !important;
+}
+
+/* Disable normal hover effects & shifts in Arrange Mode (keep items stable at their angled spine state) */
+.dvd-shelf-container.arrange-mode-active .dvd-case-card:hover {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.8) !important;
+  z-index: 1 !important;
+}
+
+.dvd-shelf-container.arrange-mode-active .dvd-shelf-row:has(.dvd-shelf-item:hover) .dvd-shelf-item:has(~ .dvd-shelf-item:hover) .dvd-case-card {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+}
+
+.dvd-shelf-container.arrange-mode-active .dvd-shelf-row .dvd-shelf-item:hover ~ .dvd-shelf-item .dvd-case-card {
+  transform: translateX(0px) rotateY(74deg) rotateX(2deg) !important;
+}
+
+/* Ensure the drag overlay keeps pointer-events active during active dragging */
+.dvd-shelf-container.dragging-active .dvd-shelf-item .dvd-drag-overlay {
+  pointer-events: auto !important;
+}
+
+
+
+
+
